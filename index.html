@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Viñedos Rusiles</title>
+  </head>
+  <body>
+    <main>
+      <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-xl">
+          <a class="navbar-brand" href="#">
+            <img src="./public/img/logo.png" alt="" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/vinedos/"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/vinedos/productos.html">Productos</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Recorridos
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/vinedos/visitas-guiadas.html">Visitas guiadas</a></li>
+                  <li><a class="dropdown-item" href="/vinedos/vendimia.html">Vendimia</a></li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="/vinedos/reservaciones.html">Reservaciones</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="contact-info d-md-flex">
+              <p>+52 412 171 9136</p>
+              <p><a href="mailto:">ventas@rusiles.com</a></p>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        style="
+          height: 100vh;
+          background-image: url(https://media.admagazine.com/photos/618a62b169ed46faf86e30ef/master/w_1600%2Cc_limit/81858.jpg);
+          background-size: cover;
+          background-position: center;
+        "
+        class="position-relative w-100"
+      >
+        <div
+          class="position-absolute text-white d-flex flex-column align-items-start justify-content-center"
+          style="
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+          "
+        >
+          <div class="container">
+            <div class="col-md-6">
+              <span style="color: #bbb" class="text-uppercase"
+                >Bienvenidos a</span
+              >
+              <h1 class="mb-4 mt-2 display-4 font-weight-bold">
+                Viñedos <span style="color: #ffffff">Rusiles</span>
+              </h1>
+              <p style="color: #bbb">
+                Descubre la pasión y dedicación detrás de cada botella de vino.
+                Únete a nosotros para una experiencia inolvidable en nuestros
+                viñedos.
+              </p>
+              <div class="mt-5">
+                <a
+                  href="#"
+                  class="btn px-5 py-3 mt-3 mt-sm-0"
+                  style="border-radius: 30px; background-color: #ffffff"
+                  >Explorar</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About 1 - Bootstrap Brain Component -->
+      <section class="py-3 py-md-5">
+        <div class="container">
+          <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+            <div class="col-12 col-lg-6 col-xl-5">
+              <img
+                class="img-fluid rounded"
+                loading="lazy"
+                src="https://imagenes.eltiempo.com/files/image_1200_600/uploads/2023/07/13/64b022c02dced.jpeg"
+                alt="Sobre Nosotros"
+              />
+            </div>
+            <div class="col-12 col-lg-6 col-xl-7">
+              <div class="row justify-content-xl-center">
+                <div class="col-12 col-xl-11">
+                  <h2 class="mb-3">¿Quiénes Somos?</h2>
+                  <p class="lead fs-4 text-secondary mb-3">
+                    En Viñedos Rusiles, nos dedicamos a producir vinos
+                    excepcionales con pasión y dedicación. Nuestra misión es
+                    ofrecer experiencias inolvidables a nuestros visitantes.
+                  </p>
+                  <p class="mb-5">
+                    Somos una empresa en crecimiento constante, pero nunca
+                    perdemos de vista nuestros valores fundamentales. Creemos en
+                    la colaboración, la innovación y la satisfacción del
+                    cliente. Siempre estamos buscando nuevas formas de mejorar
+                    nuestros productos y servicios.
+                  </p>
+                  <div class="row gy-4 gy-md-0 gx-xxl-5X">
+                    <div class="col-12 col-md-6">
+                      <div class="d-flex">
+                        <!-- <div class="me-4 text-primary">
+                                <img  width="32" height="32" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16" src="https://images.vexels.com/media/users/3/185222/isolated/preview/eca80cb5544d1ac4a9a291c112858fb0-uvas-frutas-planas.png" alt="">
+                            </div> -->
+                        <div>
+                          <h2 class="h4 mb-3">Mejor Uva, Mejor Vino</h2>
+                          <p class="text-secondary mb-0">
+                            Cultivamos la semilla en nuestra propia casa,
+                            comprobando los estándares de calidad y tratándola
+                            con el amor que se merece.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="d-flex">
+                        <!-- <div class="me-4 text-primary">
+                                <img  width="32" height="32" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16" src="https://images.vexels.com/media/users/3/185222/isolated/preview/eca80cb5544d1ac4a9a291c112858fb0-uvas-frutas-planas.png" alt="">
+                            </div> -->
+                        <div>
+                          <h2 class="h4 mb-3">El secreto</h2>
+                          <p class="text-secondary mb-0">
+                            Somos una familia 360 donde cultivamos, procesamos y
+                            distribuimos, ¡Sabemos como tratar el arte!.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="row g-4 py-5">
+            <div class="col-md-3">
+              <div class="product-single-card">
+                <div class="product-top-area">
+                  <div class="product-discount">$55.00</div>
+
+                  <div class="product-img">
+                    <div class="first-view">
+                      <img
+                        src="https://centraldeprecios.com/cdn/shop/files/Conchaytotocabernet_5000x.png?v=1720464899"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                    <div class="hover-view">
+                      <img
+                        src="https://centraldeprecios.com/cdn/shop/files/Cabernetconchaytorovinotinto_5000x.png?v=1720464899"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                  </div>
+                  <div class="sideicons">
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h6 class="product-category"><a href="#">Botella</a></h6>
+                  <h6 class="product-title text-truncate">
+                    <a href="#">Rusiles Reservado (CyT)</a>
+                  </h6>
+                  <div class="d-flex align-items-center">
+                    <div class="review-star me-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star-half-stroke"></i>
+                      <i class="fa-regular fa-star"></i>
+                    </div>
+
+                    <span class="review-count">(13)</span>
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center py-2">
+                    <div class="old-price">$3,499</div>
+                    <div class="new-price">$1,599</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="product-single-card">
+                <div class="product-top-area">
+                  <div class="product-discount">10%</div>
+
+                  <div class="product-img">
+                    <div class="first-view">
+                      <img
+                        src="https://ss388.liverpool.com.mx/xl/69428070.jpg"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                    <div class="hover-view">
+                      <img
+                        src="https://ss388.liverpool.com.mx/xl/69428070_1p.jpg"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                  </div>
+                  <div class="sideicons">
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h6 class="product-category"><a href="#">Botella</a></h6>
+                  <h6 class="product-title text-truncate">
+                    <a href="#">Rusiles Ultimate</a>
+                  </h6>
+                  <div class="d-flex align-items-center">
+                    <div class="review-star me-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <!-- <i class="fa-regular fa-star-half-stroke"></i> -->
+                      <!-- <i class="fa-regular fa-star"></i> -->
+                    </div>
+
+                    <span class="review-count">(28)</span>
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center py-2">
+                    <div class="old-price">$18,999</div>
+                    <div class="new-price">$17,099</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="product-single-card">
+                <div class="product-top-area">
+                  <div class="product-discount">10%</div>
+
+                  <div class="product-img">
+                    <div class="first-view">
+                      <img
+                        src="https://i5.walmartimages.com/asr/684d2fc3-2a54-4a0c-bdfe-4beca7c73c17.15d54df1868753269da604fca82fcc9c.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                    <div class="hover-view">
+                      <img
+                        src="https://i5.walmartimages.com/asr/0161967d-ebf5-45f1-84d9-96263f53c042.fa03d4f3dff621f8c2181c4e21fd1dd3.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                  </div>
+                  <div class="sideicons">
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h6 class="product-category"><a href="#">Botella</a></h6>
+                  <h6 class="product-title text-truncate">
+                    <a href="#">Rusiles Lol Cat</a>
+                  </h6>
+                  <div class="d-flex align-items-center">
+                    <div class="review-star me-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star-half-stroke"></i>
+                      <!-- <i class="fa-regular fa-star"></i> -->
+                    </div>
+
+                    <span class="review-count">(1)</span>
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center py-2">
+                    <div class="old-price">$5,678</div>
+                    <div class="new-price">$5,110</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="product-single-card">
+                <div class="product-top-area">
+                  <div class="product-discount">10%</div>
+
+                  <div class="product-img">
+                    <div class="first-view">
+                      <img
+                        src="https://i5.walmartimages.com/asr/e87a7048-cf5c-4dd2-9067-5b216368248f.51cbc4e30de0a7c08bd0270ac707f1d4.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                    <div class="hover-view">
+                      <img
+                        src="https://i5.walmartimages.com/asr/593c372d-9cf4-41be-971b-1cd28eef308d.9624e3de64bbbfdedb44a1eaefd7bac7.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                        alt="logo"
+                        class="img-fluid"
+                        onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'"
+                      />
+                    </div>
+                  </div>
+                  <div class="sideicons">
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <button class="sideicons-btn">
+                      <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h6 class="product-category"><a href="#">Botella</a></h6>
+                  <h6 class="product-title text-truncate">
+                    <a href="#">Rusiles Leal</a>
+                  </h6>
+                  <div class="d-flex align-items-center">
+                    <div class="review-star me-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star-half-stroke"></i>
+                      <i class="fa-regular fa-star"></i>
+                    </div>
+
+                    <span class="review-count">(13)</span>
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center py-2">
+                    <div class="old-price">$5000</div>
+                    <div class="new-price">$4,500</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container gallery-container">
+        <h2>Conoce nuestros espacios</h2>
+
+        <p class="page-description text-center">
+          Actualmente con presencia en todo Guanajuato
+        </p>
+
+        <div class="tz-gallery">
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <a
+                class="lightbox"
+                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/bridge.jpg"
+              >
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkN2okITKSt08i-dOk3aFzscFXMpSp5pqWpA&s"
+                  alt="Bridge"
+                />
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <a
+                class="lightbox"
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVb0F2XI6e5KiTlS2DD_LRSiiwv-WY8YQd0g&s"
+              >
+                <img
+                  src="https://media.istockphoto.com/id/1343881049/es/foto/vi%C3%B1edo-en-rheinhessen-al-atardecer.jpg?s=612x612&w=0&k=20&c=32eThWv9FgPKRA4BjdUUO9qjPkZWKW4joM6YK-7wuI0="
+                  alt="Park"
+                />
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <a
+                class="lightbox"
+                href="https://statics.forbesargentina.com/2024/03/crop/65fd92c73f69d__980x549.webp"
+              >
+                <img
+                  src="https://previews.123rf.com/images/flaperval/flaperval1601/flaperval160100017/51672935-campos-de-vi%C3%B1edos-de-la-rioja-por-el-camino-de-santiago-en-logro%C3%B1o.jpg"
+                  alt="Tunnel"
+                />
+              </a>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <a
+                class="lightbox"
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS67XYAMSQP0EXHDo55iV8wZxT4Uz1SeFnug&s"
+              >
+                <img
+                  src="https://media.tacdn.com/media/attractions-splice-spp-674x446/09/a2/6f/81.jpg"
+                  alt="Traffic"
+                />
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <a
+                class="lightbox"
+                href="https://dappermagazine.mx/wp-content/uploads/2024/03/33df3d065f0130255d455a86c0f3ea7d2cacbc58-1024x775.jpg"
+              >
+                <img
+                  src="https://cdn.getyourguide.com/img/tour/63c68e1b6f646.jpeg/146.jpg"
+                  alt="Coast"
+                />
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <a
+                class="lightbox"
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB7Ew2fikmGjqTN4QaeP0TlRtlyRSBsXsfuw&s"
+              >
+                <img
+                  src="https://cdn1.matadornetwork.com/blogs/2/2020/04/Vinedos-Casa-Madero-Mexico.jpg"
+                  alt="Rails"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="py-3">
+      <!-- Widgets - Bootstrap Brain Component -->
+      <div class="py-6 py-md-8 py-xl-10">
+        <div class="container">
+          <div class="row gy-3">
+            <div class="col-12">
+              <div class="footer-logo-wrapper text-center">
+                <a href="#!">
+                  <img
+                    src="./public/img/logo.png"
+                    alt="BootstrapBrain Logo"
+                    width="500"
+                    height="250"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="link-wrapper">
+                <ul
+                  class="m-0 list-unstyled d-flex justify-content-center gap-3"
+                >
+                  <li>
+                    <a
+                      href="/viñedos-bootstrap/"
+                      class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7"
+                    >
+                      Inicio
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/viñedos-bootstrap/productos.html"
+                      class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7"
+                    >
+                      Productos
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#!"
+                      class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7"
+                    >
+                      Recorridos
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#!"
+                      class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7"
+                    >
+                      Reservaciones
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="container">
+          <div class="row gy-3 gy-sm-0 align-items-sm-center">
+            <div class="col-sm-6">
+              <div
+                class="copyright-wrapper d-block mb-1 fs-9 text-center text-sm-start"
+              >
+                &copy; 2025. Todos los derechos reservados.
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="social-media-wrapper">
+                <ul
+                  class="m-0 list-unstyled d-flex justify-content-center justify-content-sm-end gap-3"
+                >
+                  <li>
+                    <a href="#!" class="link-opacity-75-hover link-dark">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-youtube"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" class="link-opacity-75-hover link-dark">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-facebook"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" class="link-opacity-75-hover link-dark">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-twitter"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

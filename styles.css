@@ -1,0 +1,298 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif !important;
+}
+
+.navbar {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand img {
+    max-width: 100px;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #000;
+}
+
+@media screen and (min-width: 1024px) {
+    .navbar {
+        letter-spacing: 0.1em;
+    }
+
+    .navbar .navbar-nav .nav-link {
+        padding: 0.5em 1em;
+    }
+
+    .search-and-icons {
+        width: 50%;
+    }
+
+    .search-and-icons form {
+        flex: 1;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .navbar .navbar-brand img {
+        max-width: 7em;
+    }
+
+    .navbar .navbar-collapse {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    }
+
+    .search-and-icons {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.search-and-icons form input {
+    border-radius: 0;
+    height: 2em;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='grey' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E") no-repeat 95%;
+}
+
+.search-and-icons form input:focus {
+    background: #fff;
+    box-shadow: none;
+}
+
+.search-and-icons .user-icons div {
+    padding-right: 1em;
+}
+
+.contact-info p,
+.contact-info a {
+    font-size: 0.9em;
+    padding-right: 1em;
+    color: grey;
+}
+
+.contact-info a {
+    padding-right: 0;
+}
+
+.user-select-none {
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+.review-star {
+    color: #fdcc0d;
+    font-size: 13px;
+}
+
+/* ===========
+  Product Single Card - Start
+  ============= */
+.product-single-card {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 15px #cccccc40;
+    transition: 0.5s ease-in;
+    /* background-color: red; */
+}
+
+.product-single-card:hover {
+    -webkit-box-shadow: 1px 1px 28.5px -7px #d6d6d6;
+    -moz-box-shadow: 1px 1px 28.5px -7px #d6d6d6;
+    box-shadow: 1px 1px 28.5px -7px #d6d6d6;
+}
+
+.product-single-card .product-info {
+    padding: 15px 0 0 0;
+}
+
+.product-single-card .product-top-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.product-single-card .product-top-area .product-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+    box-shadow: 1px 1px 28.5px -7px #dddddd;
+    user-select: none;
+    z-index: 999;
+}
+
+.product-single-card .product-top-area .product-img {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.product-single-card .product-top-area .product-img .first-view {
+    transition: 0.5s ease-in;
+}
+
+.product-single-card .product-top-area .product-img .hover-view {
+    opacity: 0;
+    transition: 0.5s ease-in;
+}
+
+.product-single-card .product-top-area:hover .product-img .first-view {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.product-single-card .product-top-area:hover .product-img .hover-view {
+    opacity: 100%;
+    scale: 1.2;
+}
+
+.product-single-card .product-top-area .sideicons {
+    position: absolute;
+    right: 15px;
+    display: grid;
+    gap: 10px;
+}
+
+.product-single-card .product-top-area .sideicons .sideicons-btn {
+    background-color: #fff;
+    color: #000;
+    border-radius: 50%;
+    border: none;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(60px);
+    transition: 0.3s ease-in;
+    -webkit-box-shadow: 1px 1px 28.5px -7px #dddddd;
+    -moz-box-shadow: 1px 1px 28.5px -7px #dddddd;
+    box-shadow: 1px 1px 28.5px -7px #dddddd;
+}
+
+.product-single-card .product-top-area .sideicons .sideicons-btn:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.product-single-card .product-top-area .sideicons .sideicons-btn:nth-child(1) {
+    transition-delay: 100ms;
+}
+
+.product-single-card .product-top-area .sideicons .sideicons-btn:nth-child(2) {
+    transition-delay: 200ms;
+}
+
+.product-single-card .product-top-area .sideicons .sideicons-btn:nth-child(3) {
+    transition-delay: 300ms;
+}
+
+.product-single-card .product-top-area .sideicons .sideicons-btn:nth-child(4) {
+    transition-delay: 400ms;
+}
+
+.product-single-card .product-top-area:hover .sideicons .sideicons-btn {
+    opacity: 100%;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.product-single-card .product-info .product-category {
+    font-weight: 600;
+    opacity: 60%;
+}
+
+.product-single-card .product-info .product-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.product-single-card .product-info .old-price,
+.product-single-card .product-info .new-price {
+    padding-right: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.product-single-card .product-info .old-price {
+    text-decoration: line-through;
+    opacity: 70%;
+}
+
+
+.container.gallery-container {
+    background-color: #fff;
+    color: #35373a;
+    min-height: 100vh;
+    padding: 30px 50px;
+}
+
+.gallery-container h2 {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+}
+
+.gallery-container p.page-description {
+    text-align: center;
+    margin: 25px auto;
+    font-size: 18px;
+    color: #999;
+}
+
+.tz-gallery {
+    padding: 40px;
+}
+
+/* Override bootstrap column paddings */
+.tz-gallery .row>div {
+    padding: 2px;
+}
+
+.tz-gallery .lightbox img {
+    width: 100%;
+    border-radius: 0;
+    position: relative;
+}
+
+.tz-gallery .lightbox:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -13px;
+    margin-left: -13px;
+    opacity: 0;
+    color: #fff;
+    font-size: 26px;
+    font-family: 'Glyphicons Halflings';
+    content: '\e003';
+    pointer-events: none;
+    z-index: 9000;
+    transition: 0.4s;
+}
+
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+@media(max-width: 768px) {
+    body {
+        padding: 0;
+    }
+}
