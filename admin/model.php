@@ -8,4 +8,9 @@ class Model
     {
         $this->conn = new PDO('mysql:host=localhost;dbname=vinedo', 'vinedo', '123');
     }
+
+    function alert($alert)
+    {
+        include './views/alert.php';
+    }
 }

@@ -13,9 +13,23 @@ class Marca extends Model
 
     }
 
-    function delete()
+    function delete($id)
     {
-
+        $this->connect();
+        $this->conn->beginTransaction();
+        $count = 0;
+        try {
+            $sql = "DELETE FROM marca WHERE id_marca = :id_marca";
+            $data = $this->conn->prepare($sql);
+            $data->bindParam(':id_marca', $id, PDO::PARAM_INT);
+            $data->execute();
+            $this->conn->commit();
+            $count = $data->rowCount();
+            return $count;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            throw $e;
+        }
     }
 
     function findOne($id)
