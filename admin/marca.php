@@ -40,6 +40,8 @@ switch ($action) {
         }
         break;
     case 'update':
+        $info = null;
+        $info = $web->findOne($id);
         if (isset($_POST['submit'])) {
             $data = $_POST['data'];
             $result = $web->update($data, $id);

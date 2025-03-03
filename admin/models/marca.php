@@ -30,6 +30,10 @@ class Marca extends Model
 
     function update($data, $id)
     {
+
+        // Trim
+        $data['marca'] = trim($data['marca']);
+
         if (isset($data['marca'])) {
             if (strlen($data['marca']) > 30) {
                 return false;
@@ -44,6 +48,21 @@ class Marca extends Model
             $stmt->bindParam(':marca', $data['marca'], PDO::PARAM_STR);
             $stmt->bindParam(':id_marca', $id, PDO::PARAM_INT);
             $stmt->execute();
+
+            // Check if marca already exists
+            $sql = "SELECT marca, count(*) FROM marca WHERE marca = :marca group by marca";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':marca', $data['marca'], PDO::PARAM_STR);
+            $stmt->execute();
+
+            $marca = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (isset($stmt['marca'])) {
+                if ($marca['count'] > 1) {
+                    $this->conn->rollBack();
+                    return false;
+                }
+            }
+
             $this->conn->commit();
             $count = $stmt->rowCount();
             return $count;
@@ -90,7 +109,7 @@ class Marca extends Model
         $data = $this->conn->prepare("SELECT * FROM marca WHERE id_marca = :id_marca");
         $data->bindParam(':id_marca', $id, PDO::PARAM_INT);
         $data->execute();
-        $result = $data->fetchAll();
+        $result = $data->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
