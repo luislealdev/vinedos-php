@@ -1,6 +1,6 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once './models/marca.php';
 
 $web = new Marca();
@@ -8,7 +8,7 @@ $web = new Marca();
 $action = null;
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$id = isset($_GET['action']) ? $_GET['id'] : null;
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
 
 $alert = [];
@@ -40,7 +40,27 @@ switch ($action) {
         }
         break;
     case 'update':
-        $web->update();
+        if (isset($_POST['submit'])) {
+            $data = $_POST['data'];
+            $result = $web->update($data, $id);
+            if ($result) {
+                $alert['type'] = 'success';
+                $alert['message'] = 'Marca actualizada correctamente.';
+                $web->alert($alert);
+                $marcas = $web->findAll();
+                include_once './views/marca/index.php';
+            } else {
+                $alert['type'] = 'danger';
+                $alert['message'] = 'Error al actualizar la marca.';
+                $web->alert($alert);
+                include_once './views/marca/form.php';
+            }
+
+            $marcas = $web->findAll();
+            include_once './views/marca/index.php';
+        } else {
+            include_once './views/marca/form.php';
+        }
         break;
     case 'delete':
         $result = $web->delete($id);

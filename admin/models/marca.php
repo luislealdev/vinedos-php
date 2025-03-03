@@ -5,13 +5,52 @@ class Marca extends Model
 {
     function create($data)
     {
-        print_r($data);
-        return $data;
+
+        if (isset($data['marca'])) {
+            if (strlen($data['marca']) > 30) {
+                return false;
+            }
+        }
+
+        $this->connect();
+        $this->conn->beginTransaction();
+        try {
+            $sql = "INSERT INTO marca (marca) VALUES (:marca)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':marca', $data['marca'], PDO::PARAM_STR);
+            $stmt->execute();
+            $this->conn->commit();
+            $count = $stmt->rowCount();
+            return $count;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            throw $e;
+        }
     }
 
-    function update()
+    function update($data, $id)
     {
+        if (isset($data['marca'])) {
+            if (strlen($data['marca']) > 30) {
+                return false;
+            }
+        }
 
+        $this->connect();
+        $this->conn->beginTransaction();
+        try {
+            $sql = "UPDATE marca SET marca = :marca WHERE id_marca = :id_marca";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':marca', $data['marca'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_marca', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $this->conn->commit();
+            $count = $stmt->rowCount();
+            return $count;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            throw $e;
+        }
     }
 
     function delete($id)
