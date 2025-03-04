@@ -1,7 +1,7 @@
-<h1>Marcas</h1>
-<a href="?action=create" class="btn btn-success">Crear</a>
-<table class="table">
-    <thead>
+<h1 class="my-4">Marcas</h1>
+<a href="?action=create" class="btn btn-success mb-3">Crear</a>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Marca</th>
