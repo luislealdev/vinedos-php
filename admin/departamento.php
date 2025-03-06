@@ -43,6 +43,7 @@ switch ($action) {
         }
         break;
     case 'update':
+        $departamentos = $web->findAll();
         $info = null;
         $info = $web->findOne($id);
         if (isset($_POST['submit'])) {
@@ -74,7 +75,7 @@ switch ($action) {
             $alert['message'] = 'La operación se ha realizado correctamente.';
         } else {
             $alert['type'] = 'danger';
-            $alert['message'] = 'La operación no se ha realizado correctamente o existen productos asociados a esta departamento.';
+            $alert['message'] = 'La operación no se ha realizado correctamente o existen departamentos asociados a esta departamento.';
         }
 
         $web->alert($alert);

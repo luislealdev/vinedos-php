@@ -12,9 +12,9 @@
                     value="<?php echo isset($info['departamento']) ? $info['departamento'] : ''; ?>" required>
                 <label for="departamento">Departamento</label>
                 <select class="form-control" name="data[id_departamento_depende]">
-                    <option value="">Dependiente de...</option>
+                    <option value="">No dependiente</option>
                     <?php foreach ($departamentos as $departamento): ?>
-                        <option value="<?php echo $departamento['id_departamento']; ?>" <?php echo isset($info['id_departamento']) && $info['id_departamento'] == $departamento['id_departamento'] ? 'selected' : ''; ?>>
+                        <option value="<?php echo $departamento['id_departamento']; ?>" <?php echo isset($info['id_departamento_depende']) && $info['id_departamento_depende'] == $departamento['id_departamento'] ? 'selected' : ''; ?>>
                             <?php echo $departamento['departamento']; ?>
                         </option>
                     <?php endforeach; ?>

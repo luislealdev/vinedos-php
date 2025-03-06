@@ -17,7 +17,13 @@ class Departamento extends Model
             $sql = "INSERT INTO departamento (departamento, id_departamento_depende) VALUES (:departamento, :id_departamento_depende)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':departamento', $data['departamento'], PDO::PARAM_STR);
-            $stmt->bindParam(':id_departamento_depende', $data['id_departamento_depende'], PDO::PARAM_INT);
+
+            if (is_null($data['id_departamento_depende']) || $data['id_departamento_depende'] === '') {
+                $stmt->bindValue(':id_departamento_depende', null, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindParam(':id_departamento_depende', $data['id_departamento_depende'], PDO::PARAM_INT);
+            }
+
             $stmt->execute();
             $this->conn->commit();
             $count = $stmt->rowCount();
@@ -42,10 +48,17 @@ class Departamento extends Model
         $this->connect();
         $this->conn->beginTransaction();
         try {
-            $sql = "UPDATE departamento SET departamento = :departamento WHERE id_departamento = :id_departamento";
+            $sql = "UPDATE departamento SET departamento = :departamento, id_departamento_depende = :id_departamento_depende WHERE id_departamento = :id_departamento";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':departamento', $data['departamento'], PDO::PARAM_STR);
             $stmt->bindParam(':id_departamento', $id, PDO::PARAM_INT);
+
+            if (is_null($data['id_departamento_depende']) || $data['id_departamento_depende'] === '') {
+                $stmt->bindValue(':id_departamento_depende', null, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindParam(':id_departamento_depende', $data['id_departamento_depende'], PDO::PARAM_INT);
+            }
+
             $stmt->execute();
 
             // Check if departamento already exists
@@ -126,4 +139,4 @@ class Departamento extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-}
+}   
