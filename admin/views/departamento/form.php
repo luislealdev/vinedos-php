@@ -10,12 +10,12 @@
                 <input type="text" maxlength="30" class="form-control" name="data[departamento]"
                     placeholder="Departamento"
                     value="<?php echo isset($info['departamento']) ? $info['departamento'] : ''; ?>" required>
-                <label for="marca">Departamento</label>
-                <select class="form-control" name="data[id_marca]">
+                <label for="departamento">Departamento</label>
+                <select class="form-control" name="data[id_departamento_depende]">
                     <option value="">Dependiente de...</option>
-                    <?php foreach ($marcas as $marca): ?>
-                        <option value="<?php echo $marca['id_marca']; ?>" <?php echo isset($info['id_marca']) && $info['id_marca'] == $marca['id_marca'] ? 'selected' : ''; ?>>
-                            <?php echo $marca['marca']; ?>
+                    <?php foreach ($departamentos as $departamento): ?>
+                        <option value="<?php echo $departamento['id_departamento']; ?>" <?php echo isset($info['id_departamento']) && $info['id_departamento'] == $departamento['id_departamento'] ? 'selected' : ''; ?>>
+                            <?php echo $departamento['departamento']; ?>
                         </option>
                     <?php endforeach; ?>
                 </select>

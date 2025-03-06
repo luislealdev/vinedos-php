@@ -17,6 +17,9 @@ require_once './views/header.php';
 
 switch ($action) {
     case 'create':
+
+        $departamentos = $web->findAll();
+
         if (isset($_POST['submit'])) {
             $data = $_POST['data'];
             $result = $web->create($data);

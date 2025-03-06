@@ -14,9 +14,10 @@ class Departamento extends Model
         $this->connect();
         $this->conn->beginTransaction();
         try {
-            $sql = "INSERT INTO departamento (departamento) VALUES (:departamento)";
+            $sql = "INSERT INTO departamento (departamento, id_departamento_depende) VALUES (:departamento, :id_departamento_depende)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':departamento', $data['departamento'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_departamento_depende', $data['id_departamento_depende'], PDO::PARAM_INT);
             $stmt->execute();
             $this->conn->commit();
             $count = $stmt->rowCount();
