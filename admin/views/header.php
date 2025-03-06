@@ -32,6 +32,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="producto.php">Productos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="estado.php">Estados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="departamento.php">Departamentos</a>
+                    </li>
+
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">

@@ -13,7 +13,7 @@ class Producto extends Model
                 return false;
             }
         }
-
+        
         $this->connect();
         $this->conn->beginTransaction();
         try {
