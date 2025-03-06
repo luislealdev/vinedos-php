@@ -10,7 +10,6 @@ $action = null;
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-
 $alert = [];
 
 require_once './views/header.php';
