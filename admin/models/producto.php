@@ -56,9 +56,9 @@ class Producto extends Model
 
         return false;
     }
+    
     function update($data, $id)
     {
-
         // Trim
         $data['producto'] = trim($data['producto']);
 
@@ -71,22 +71,23 @@ class Producto extends Model
         $this->connect();
         $this->conn->beginTransaction();
         try {
-            $sql = "UPDATE producto SET producto = :producto, precio = :precio, id_marca = :id_marca WHERE id_producto = :id_producto";
+            $sql = "UPDATE producto SET producto = :producto, precio = :precio, id_marca = :id_marca, descripcion = :descripcion WHERE id_producto = :id_producto";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
             $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
             $stmt->bindParam(':id_marca', $data['id_marca'], PDO::PARAM_INT);
+            $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
             $stmt->bindParam(':id_producto', $id, PDO::PARAM_INT);
             $stmt->execute();
 
             // Check if producto already exists
-            $sql = "SELECT producto, count(*) FROM producto WHERE producto = :producto group by producto";
+            $sql = "SELECT producto, count(*) as count FROM producto WHERE producto = :producto GROUP BY producto";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
             $stmt->execute();
 
             $producto = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (isset($stmt['producto'])) {
+            if ($producto && isset($producto['producto'])) {
                 if ($producto['count'] > 1) {
                     $this->conn->rollBack();
                     return false;
@@ -129,7 +130,7 @@ class Producto extends Model
     function findOne($id)
     {
         $this->connect();
-        $data = $this->conn->prepare("SELECT p.*, m.marca FROM producto WHERE id_producto = :id_producto join marca m on p.id_marca = m.id_marca");
+        $data = $this->conn->prepare("SELECT p.*, m.marca FROM producto p JOIN marca m ON p.id_marca = m.id_marca WHERE id_producto = :id_producto");
         $data->bindParam(':id_producto', $id, PDO::PARAM_INT);
         $data->execute();
         $result = $data->fetch(PDO::FETCH_ASSOC);

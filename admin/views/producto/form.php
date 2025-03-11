@@ -1,5 +1,6 @@
-<form enctype="multipart/form-data" action="producto.php?action=<?php echo isset($_GET['id']) ? 'update&id=' . $_GET['id'] : 'create'; ?>"
-    method="POST" class="container mt-5">
+<form enctype="multipart/form-data"
+    action="producto.php?action=<?php echo isset($_GET['id']) ? 'update&id=' . $_GET['id'] : 'create'; ?>" method="POST"
+    class="container mt-5">
     <div class="card">
         <div class="card-header">
             <h3><?php echo isset($_GET['id']) ? 'Editar' : 'Crear'; ?> Producto</h3>
@@ -29,7 +30,13 @@
                     required><?php echo isset($info['descripcion']) ? $info['descripcion'] : ''; ?></textarea>
                 <!-- Fotografía -->
                 <label for="foto">Fotografía</label>
-                <input type="file" class="form-control" name="fotografia" placeholder="Fotografía" required>
+                <?php if (isset($info['fotografia']) && !empty($info['fotografia'])): ?>
+                    <div class="mb-3">
+                        <img src="<?= "../uploads/" . $info['fotografia'] ?>" alt="<?= $producto['producto'] ?>" alt="Fotografía del producto" class="img-thumbnail"
+                            style="max-width: 200px;">
+                    </div>
+                <?php endif; ?>
+                <input type="file" class="form-control" name="fotografia" placeholder="Fotografía">
             </div>
         </div>
         <div class="card-footer d-flex justify-content-between">
