@@ -3,6 +3,7 @@ require_once __DIR__ . '/../model.php';
 
 class Producto extends Model
 {
+
     function create($data)
     {
         if (isset($_POST['submit'])) {
@@ -18,26 +19,32 @@ class Producto extends Model
             $this->connect();
             $this->conn->beginTransaction();
             try {
-                $image = $this->load_image();
-                $sql = "INSERT INTO producto (producto, precio, id_marca) VALUES (:producto, :precio, :id_marca)";
-                $stmt = $this->conn->prepare($sql);
-                $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
-                $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
-                $stmt->bindParam(':id_marca', $data['id_marca'], PDO::PARAM_INT);
-                $stmt->execute();
-
+                // Check if producto already exists
                 $sql = "SELECT producto, count(*) as count FROM producto WHERE producto = :producto GROUP BY producto";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
                 $stmt->execute();
-
                 $producto = $stmt->fetch(PDO::FETCH_ASSOC);
-                if (isset($producto['producto'])) {
-                    if ($producto['count'] > 1) {
-                        $this->conn->rollBack();
-                        return false;
-                    }
+                if (isset($producto['producto']) && $producto['count'] > 0) {
+                    $this->conn->rollBack();
+                    return false;
                 }
+
+                $image = $this->load_image();
+                if ($image) {
+                    $sql = "INSERT INTO producto (producto, precio, id_marca, fotografia, descripcion) VALUES (:producto, :precio, :id_marca, :fotografia, :descripcion)";
+                    $stmt = $this->conn->prepare($sql);
+                    $stmt->bindParam(':fotografia', $image, PDO::PARAM_STR);
+                } else {
+                    $sql = "INSERT INTO producto (producto, precio, id_marca, descripcion) VALUES (:producto, :precio, :id_marca, :descripcion)";
+                    $stmt = $this->conn->prepare($sql);
+                }
+
+                $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
+                $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_marca', $data['id_marca'], PDO::PARAM_INT);
+                $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
+                $stmt->execute();
 
                 $this->conn->commit();
                 return $stmt->rowCount();
@@ -49,7 +56,6 @@ class Producto extends Model
 
         return false;
     }
-
     function update($data, $id)
     {
 

@@ -4,6 +4,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Fotografía</th>
             <th scope="col">Producto</th>
             <th scope="col">Precio</th>
             <th scope="col">Marca</th>
@@ -13,6 +14,10 @@
         <?php foreach ($productos as $producto): ?>
             <tr>
                 <th scope="row"><?= $producto['id_producto'] ?></th>
+                <!-- Show image -->
+                <td>
+                    <img src="<?= "../uploads/" . $producto['fotografia'] ?>" alt="<?= $producto['producto'] ?>" width="50">
+                </td>
                 <td><?= $producto['producto'] ?></td>
                 <td><?= $producto['precio'] ?></td>
                 <td><?= $producto['marca'] ?></td>
