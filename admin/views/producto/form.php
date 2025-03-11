@@ -1,4 +1,4 @@
-<form action="producto.php?action=<?php echo isset($_GET['id']) ? 'update&id=' . $_GET['id'] : 'create'; ?>"
+<form enctype="multipart/form-data" action="producto.php?action=<?php echo isset($_GET['id']) ? 'update&id=' . $_GET['id'] : 'create'; ?>"
     method="POST" class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -29,9 +29,7 @@
                     required><?php echo isset($info['descripcion']) ? $info['descripcion'] : ''; ?></textarea>
                 <!-- Fotografía -->
                 <label for="foto">Fotografía</label>
-                <input type="file" class="form-control" name="data[foto]" placeholder="Fotografía"
-                    value="<?php echo isset($info['foto']) ? $info['foto'] : ''; ?>" required>
-
+                <input type="file" class="form-control" name="fotografia" placeholder="Fotografía" required>
             </div>
         </div>
         <div class="card-footer d-flex justify-content-between">

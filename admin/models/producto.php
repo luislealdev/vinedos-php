@@ -18,6 +18,7 @@ class Producto extends Model
             $this->connect();
             $this->conn->beginTransaction();
             try {
+                $image = $this->load_image();
                 $sql = "INSERT INTO producto (producto, precio, id_marca) VALUES (:producto, :precio, :id_marca)";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);

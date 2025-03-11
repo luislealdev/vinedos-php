@@ -38,18 +38,24 @@ class Model
         include './views/alert.php';
     }
 
-    function load_image(){
+    function load_image()
+    {
         if (isset($_FILES)) {
             $images = $_FILES;
-            foreach($images as $image){
-                if($image['error'] == 0){
-                    if($image['size'] <= $this->max_size +1){
-                        if(in_array($image['type'], $this->types)){
-                            $name = $image['name'];
-                            $tmp = $image['tmp_name'];
-                            $path = UPLOAD_DIR . $name;
-                            move_uploaded_file($tmp, $path);
-                            return $path;
+            foreach ($images as $image) {
+                if ($image['error'] == 0) {
+                    if ($image['size'] <= $this->max_size + 1) {
+                        if (in_array($image['type'], $this->get_types())) {
+                            $ext = explode('.', $image['name']);
+                            $ext = $ext[count($ext) - 1];
+                            $name = md5($image['name']) . random_int(1, 1000000) . '.' . $ext;
+                            if (!file_exists(UPLOAD_DIR . $name)) {
+                                if (move_uploaded_file($image['tmp_name'], UPLOAD_DIR . $name)) {
+                                    return $name;
+                                } else {
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }
