@@ -5,44 +5,48 @@ class Producto extends Model
 {
     function create($data)
     {
-        if (isset($data['producto']) && isset($data['precio']) && isset($data['id_marca'])) {
-            if (strlen($data['producto']) > 30) {
-                return false;
-            }
-            if ((!is_numeric($data['precio'])) || ($data['precio'] < 0) || (!is_numeric($data['id_marca']))) {
-                return false;
-            }
-        }
-        
-        $this->connect();
-        $this->conn->beginTransaction();
-        try {
-            $sql = "INSERT INTO producto (producto, precio, id_marca) VALUES (:producto, :precio, :id_marca)";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
-            $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
-            $stmt->bindParam(':id_marca', $data['id_marca'], PDO::PARAM_INT);
-            $stmt->execute();
-
-            $sql = "SELECT producto, count(*) as count FROM producto WHERE producto = :producto GROUP BY producto";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
-            $stmt->execute();
-
-            $producto = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (isset($producto['producto'])) {
-                if ($producto['count'] > 1) {
-                    $this->conn->rollBack();
+        if (isset($_POST['submit'])) {
+            if (isset($data['producto']) && isset($data['precio']) && isset($data['id_marca'])) {
+                if (strlen($data['producto']) > 30) {
+                    return false;
+                }
+                if ((!is_numeric($data['precio'])) || ($data['precio'] < 0) || (!is_numeric($data['id_marca']))) {
                     return false;
                 }
             }
 
-            $this->conn->commit();
-            return $stmt->rowCount();
-        } catch (PDOException $e) {
-            $this->conn->rollBack();
-            throw $e;
+            $this->connect();
+            $this->conn->beginTransaction();
+            try {
+                $sql = "INSERT INTO producto (producto, precio, id_marca) VALUES (:producto, :precio, :id_marca)";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
+                $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_marca', $data['id_marca'], PDO::PARAM_INT);
+                $stmt->execute();
+
+                $sql = "SELECT producto, count(*) as count FROM producto WHERE producto = :producto GROUP BY producto";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
+                $stmt->execute();
+
+                $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (isset($producto['producto'])) {
+                    if ($producto['count'] > 1) {
+                        $this->conn->rollBack();
+                        return false;
+                    }
+                }
+
+                $this->conn->commit();
+                return $stmt->rowCount();
+            } catch (PDOException $e) {
+                $this->conn->rollBack();
+                throw $e;
+            }
         }
+
+        return false;
     }
 
     function update($data, $id)

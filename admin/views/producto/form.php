@@ -23,7 +23,15 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <!-- <input type="text" value=2 name="data[id_marca]"> -->
+                <!-- Descripción -->
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" name="data[descripcion]" placeholder="Descripción"
+                    required><?php echo isset($info['descripcion']) ? $info['descripcion'] : ''; ?></textarea>
+                <!-- Fotografía -->
+                <label for="foto">Fotografía</label>
+                <input type="file" class="form-control" name="data[foto]" placeholder="Fotografía"
+                    value="<?php echo isset($info['foto']) ? $info['foto'] : ''; ?>" required>
+
             </div>
         </div>
         <div class="card-footer d-flex justify-content-between">
