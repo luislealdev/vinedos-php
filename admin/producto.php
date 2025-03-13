@@ -86,14 +86,14 @@ switch ($action) {
 
         break;
     case 'findAll':
-        $web->findAll();
+        $web->findAll($id);
         include_once './views/producto/index.php';
         break;
     case 'findOne':
         $web->findOne($id);
         break;
     default:
-        $productos = $web->findAll();
+        $web->findAll($id);
         include_once './views/producto/index.php';
         break;
 }

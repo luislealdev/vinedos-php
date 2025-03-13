@@ -1,8 +1,11 @@
 <?php
 require_once __DIR__ . '/admin/models/producto.php';
+require_once __DIR__ . '/admin/models/marca.php';
 $web = new Producto();
+$web2 = new Marca();
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 $productos = $web->findAll($id);
+$marcas = $web2->findAll();
 
 ?>
 <!DOCTYPE html>
@@ -83,14 +86,14 @@ $productos = $web->findAll($id);
     </div>
 
     <!-- Filtros -->
-    <div class="container mb-5">
+    <form action="productos.php" method="GET" class="container mb-5">
       <div class="row">
         <div class="col-md-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4">Filtros</h5>
 
-              <div class="mb-4">
+              <!-- <div class="mb-4">
                 <h6>Tipo de Vino</h6>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="tinto" />
@@ -104,25 +107,29 @@ $productos = $web->findAll($id);
                   <input class="form-check-input" type="checkbox" id="rosado" />
                   <label class="form-check-label" for="rosado">Rosado</label>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="mb-4">
+              <!-- <div class="mb-4">
                 <h6>Precio</h6>
                 <input type="range" class="form-range" min="0" max="20000" id="precio" />
                 <div class="d-flex justify-content-between">
                   <span>$0</span>
                   <span>$20,000</span>
                 </div>
-              </div>
+              </div> -->
 
               <div>
-                <h6>Ordenar por</h6>
-                <select class="form-select">
-                  <option>Más relevantes</option>
-                  <option>Menor precio</option>
-                  <option>Mayor precio</option>
-                  <option>Más vendidos</option>
+                <h6>Seleccionar marca</h6>
+                <select class="form-select" name="id">
+                  <option value="">Sin filtrar</option>
+                  <?php foreach ($marcas as $marca): ?>
+                    <option value="<?php echo $marca['id'] ?>">
+                      <?php echo $marca['marca'] ?>
+                    </option>
+                  <?php endforeach; ?>
                 </select>
+
+                <input type="submit" value="Filtrar" class="btn btn-primary mt-3" />
               </div>
             </div>
           </div>
@@ -206,7 +213,7 @@ $productos = $web->findAll($id);
           </nav>
         </div>
       </div>
-    </div>
+    </form>
 
     <!-- Footer (igual que en index.html) -->
     <footer class="py-3">
