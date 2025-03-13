@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/admin/models/producto.php';
 $web = new Producto();
-$productos = $web->findAll();
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+$productos = $web->findAll($id);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,8 +72,12 @@ $productos = $web->findAll();
           <h1 class="display-4 mb-4">Nuestros Productos</h1>
           <p class="lead text-secondary">
             Descubre nuestra selección de vinos premium elaborados con las
-            mejores uvas
+            mejores uvas.
           </p>
+          <!-- Show marca if id -->
+          <?php if ($id): ?>
+            <h2 class="display-12 mt-4"><?php echo $productos[0]['marca'] ?></h2>
+          <?php endif; ?>
         </div>
       </div>
     </div>

@@ -136,7 +136,7 @@ class Producto extends Model
         }
     }
 
-    function findOne($id)
+    function findOne()
     {
         $this->connect();
         $data = $this->conn->prepare("SELECT p.*, m.marca FROM producto p JOIN marca m ON p.id_marca = m.id_marca WHERE id_producto = :id_producto");
@@ -146,11 +146,29 @@ class Producto extends Model
         return $result;
     }
 
-    function findAll()
+    function findAll($id_marca = null)
     {
         $this->connect();
+
+        $sql = "SELECT p.*, m.marca FROM producto p JOIN marca m ON p.id_marca = m.id_marca ORDER BY producto";
+
+        if (!is_null($id_marca)) {
+            if (is_numeric($id_marca)) {
+                $sql = "SELECT p.*, m.marca FROM producto p JOIN marca m ON p.id_marca = m.id_marca WHERE p.id_marca = :id_marca";
+            }
+
+        }
+        // Prepare
+        $data = $this->conn->prepare($sql);
+
+        if (!is_null($id_marca)) {
+            if (is_numeric($id_marca)) {
+                $data->bindParam(':id_marca', $id_marca, PDO::PARAM_INT);
+            }
+
+        }
+
         // Get cantidad from producto
-        $data = $this->conn->query("select p.*, m.marca from producto p left join marca m on p.id_marca = m.id_marca order by producto");
         $data->execute();
         $marcas = $data->fetchAll(PDO::FETCH_ASSOC);
         return $marcas;
