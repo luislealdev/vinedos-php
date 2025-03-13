@@ -56,7 +56,7 @@ class Producto extends Model
 
         return false;
     }
-    
+
     function update($data, $id)
     {
         // Trim
@@ -71,8 +71,17 @@ class Producto extends Model
         $this->connect();
         $this->conn->beginTransaction();
         try {
-            $sql = "UPDATE producto SET producto = :producto, precio = :precio, id_marca = :id_marca, descripcion = :descripcion WHERE id_producto = :id_producto";
-            $stmt = $this->conn->prepare($sql);
+
+            $image = $this->load_image();
+            if ($image) {
+                $sql = "UPDATE producto SET producto = :producto, precio = :precio, id_marca = :id_marca, descripcion = :descripcion, fotografia = :fotografia WHERE id_producto = :id_producto";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':fotografia', $image, PDO::PARAM_STR);
+            } else {
+                $sql = "UPDATE producto SET producto = :producto, precio = :precio, id_marca = :id_marca, descripcion = :descripcion WHERE id_producto = :id_producto";
+                $stmt = $this->conn->prepare($sql);
+            }
+
             $stmt->bindParam(':producto', $data['producto'], PDO::PARAM_STR);
             $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
             $stmt->bindParam(':id_marca', $data['id_marca'], PDO::PARAM_INT);

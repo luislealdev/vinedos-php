@@ -46,6 +46,7 @@ switch ($action) {
         break;
     case 'update':
         $info = null;
+        $marcas = $webMarca->findAll();
         $info = $web->findOne($id);
         if (isset($_POST['submit'])) {
             $data = $_POST['data'];
