@@ -1,4 +1,4 @@
-<form action="<?php echo $action === 'create' ? '?action=create' : ''; ?>" method="POST"
+<form action="<?php echo $action === 'create' ? '?action=create' : '/vinedos/admin/login.php'; ?>" method="POST"
     class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -12,15 +12,13 @@
             <?php endif; ?>
             <div class="form-group">
                 <label for="correo">Correo</label>
-                <input type="email" maxlength="100" class="form-control"
-                    name="<?php echo $action === 'create' ? 'data[correo]' : 'correo'; ?>"
+                <input type="email" maxlength="100" class="form-control" name="data[correo]"
                     placeholder="Correo electrónico" required>
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" maxlength="255" class="form-control"
-                    name="<?php echo $action === 'create' ? 'data[password]' : 'password'; ?>" placeholder="Contraseña"
-                    required>
+                <input type="password" maxlength="255" class="form-control" name="data[password]"
+                    placeholder="Contraseña" required>
             </div>
             <!-- <?php if ($action === 'create'): ?>
                 <div class="form-group">

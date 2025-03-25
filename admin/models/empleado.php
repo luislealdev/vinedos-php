@@ -91,7 +91,7 @@ class Empleado extends Model
 
                 // Insert default roles into usuario_rol
                 $sql = "INSERT INTO usuario_rol (id_usuario, id_rol) VALUES (:id_usuario, :id_rol)";
-                $roles = array(1, 3); // Default roles
+                $roles = array(2, 3); // Default roles for user and employee
                 foreach ($roles as $rol) {
                     $stmt = $this->conn->prepare($sql);
                     $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
