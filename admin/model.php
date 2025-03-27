@@ -83,7 +83,7 @@ class Model
 
     function login($mail, $password)
     {
-        $_SESSION['validated'] = false;
+
         $roles = [];
         $permissions = [];
         $password = md5($password);
@@ -134,5 +134,32 @@ class Model
         unset($_SESSION['permissions']);
         session_destroy();
         return true;
+    }
+
+    function check($rol)
+    {
+        if (isset($_SESSION['validated'])) {
+            $roles = isset($_SESSION['roles']) ? $_SESSION['roles'] : [];
+            if (in_array($rol, $roles)) {
+                return true;
+            }
+        }
+        ob_clean();
+        $alerta = [];
+        $alerta['type'] = 'danger';
+        $alerta['message'] = 'No tienes permisos para acceder a esta página.';
+        $this->alert($alerta);
+        die();
+    }
+
+    function check_permission($permission)
+    {
+        if (isset($_SESSION['validated'])) {
+            $permissions = isset($_SESSION['permissions']) ? $_SESSION['permissions'] : [];
+            if (in_array($permission, $permissions)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

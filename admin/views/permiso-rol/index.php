@@ -35,8 +35,11 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <!-- <a href="?action=update&id=<?= $permisoRol['id_permiso'] ?>" class="btn btn-primary">Editar</a> -->
-                        <!-- <a href="?action=delete&id=<?= $permisoRol['id_permiso'] ?>" class="btn btn-danger">Eliminar</a> -->
+                        <a href="?action=update&id_permiso=<?= urlencode($permisoRol['id_permiso']) ?>&id_rol=<?= urlencode($permisoRol['id_rol']) ?>"
+                            class="btn btn-primary">Editar</a>
+                        <a href="?action=delete&id_permiso=<?= urlencode($permisoRol['id_permiso']) ?>&id_rol=<?= urlencode($permisoRol['id_rol']) ?>"
+                            class="btn btn-danger"
+                            onclick="return confirm('¿Seguro que quieres eliminar este registro?')">Eliminar</a>
                     </div>
                 </td>
             </tr>

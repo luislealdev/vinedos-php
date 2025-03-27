@@ -123,4 +123,14 @@ class Marca extends Model
         $marcas = $data->fetchAll();
         return $marcas;
     }
+
+    function graficar()
+    {
+        $this->connect();
+        $data = $this->conn->query("SELECT m.marca, COUNT(p.id_producto) as cantidad 
+        FROM marca m LEFT JOIN producto p ON m.id_marca = p.id_marca GROUP BY m.marca");
+        $data->execute();
+        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

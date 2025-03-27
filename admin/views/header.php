@@ -58,8 +58,11 @@
                 </ul>
 
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <?php if (isset($_SESSION) && $_SESSION['validated']): ?>
+                        <a href="/vinedos/admin/login.php?action=logout" class="btn btn-danger">Cerrar Sesión</a>
+                    <?php else: ?>
+                        <a href="/vinedos/auth/" class="btn btn-primary">Iniciar Sesión</a>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>

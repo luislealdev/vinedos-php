@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('SGBD', 'mysql');
 define('HOST', 'localhost');
 define('DB', 'vinedo');

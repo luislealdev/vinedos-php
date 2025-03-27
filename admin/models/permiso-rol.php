@@ -5,10 +5,6 @@ class PermisoRol extends Model
 {
     function create($data)
     {
-        if (empty($data['id_permiso']) || empty($data['id_rol'])) {
-            return false;
-        }
-    
         $this->connect();
         try {
             $sql = "INSERT INTO permiso_rol (id_permiso, id_rol) VALUES (:id_permiso, :id_rol)";
@@ -52,22 +48,23 @@ class PermisoRol extends Model
         }
     }
 
-    function delete($id)
+    function delete($id_permiso, $id_rol)
     {
         $this->connect();
         try {
             // Verificar referencias
-            $sql = "SELECT COUNT(*) FROM permiso-rol_rol WHERE id_permiso-rol = :id_permiso-rol";
+            // $sql = "SELECT COUNT(*) FROM permiso_rol WHERE id_permiso = :id_permiso AND id_rol = :id_rol";
+            // $stmt = $this->conn->prepare($sql);
+            // $stmt->bindParam(':id_permiso', $id_permiso, PDO::PARAM_INT);
+            // $stmt->bindParam(':id_rol', $id_rol, PDO::PARAM_INT);
+            // $stmt->execute();
+            // if ($stmt->fetchColumn() > 0) {
+            //     return false; // No se puede eliminar porque está en uso
+            // }
+            $sql = "DELETE FROM permiso_rol WHERE id_permiso = :id_permiso AND id_rol = :id_rol";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id_permiso-rol', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            if ($stmt->fetchColumn() > 0) {
-                return false; // No se puede eliminar porque está en uso
-            }
-
-            $sql = "DELETE FROM permiso-rol WHERE id_permiso-rol = :id_permiso-rol";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id_permiso-rol', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id_permiso', $id_permiso, PDO::PARAM_INT);
+            $stmt->bindParam(':id_rol', $id_rol, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {

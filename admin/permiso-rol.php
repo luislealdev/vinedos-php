@@ -14,14 +14,13 @@ $action = null;
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-
 $alert = [];
 
 require_once './views/header.php';
 
 switch ($action) {
     case 'create':
-        $permisos = $webPermiso->findAll();
+        $permisosRoles = $webPermiso->findAll();
         $roles = $webRol->findAll();
         if (isset($_POST['submit'])) {
             $data = $_POST['data'];
@@ -30,7 +29,7 @@ switch ($action) {
                 $alert['type'] = 'success';
                 $alert['message'] = 'permiso creada correctamente.';
                 $web->alert($alert);
-                $permisos = $web->findAll();
+                $permisosRoles = $web->findAll();
                 include_once './views/permiso-rol/index.php';
             } else {
                 $alert['type'] = 'danger';
@@ -39,7 +38,7 @@ switch ($action) {
                 include_once './views/permiso-rol/form.php';
             }
 
-            $permisos = $web->findAll();
+            $permisosRoles = $web->findAll();
             include_once './views/permiso-rol/index.php';
         } else {
             include_once './views/permiso-rol/form.php';
@@ -57,7 +56,7 @@ switch ($action) {
                 $alert['type'] = 'success';
                 $alert['message'] = 'permiso actualizada correctamente.';
                 $web->alert($alert);
-                $permisos = $web->findAll();
+                $permisosRoles = $web->findAll();
                 include_once './views/permiso-rol/index.php';
             } else {
                 $alert['type'] = 'danger';
@@ -66,14 +65,17 @@ switch ($action) {
                 include_once './views/permiso-rol/form.php';
             }
 
-            $permisos = $web->findAll();
+            $permisosRoles = $web->findAll();
             include_once './views/permiso-rol/index.php';
         } else {
             include_once './views/permiso-rol/form.php';
         }
         break;
     case 'delete':
-        $result = $web->delete($id);
+        $id_permiso = isset($_GET['id_permiso']) ? $_GET['id_permiso'] : null;
+        $id_rol = isset($_GET['id_rol']) ? $_GET['id_rol'] : null;
+
+        $result = $web->delete($id_permiso, $id_rol);
         if ($result) {
             $alert['type'] = 'success';
             $alert['message'] = 'La operación se ha realizado correctamente.';
