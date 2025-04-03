@@ -73,6 +73,10 @@ switch ($action) {
         include_once './views/form.php';
         break;
 
+    case 'forget':
+        include_once './views/forget.php';
+        break;
+
     case 'findAll':
         $usuarios = $web->findAll();
         include_once './views/form.php';

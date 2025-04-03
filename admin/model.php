@@ -136,6 +136,68 @@ class Model
         return true;
     }
 
+    function changePassword($mail)
+    {
+        if ($this->validateMail($mail)) {
+            // generate token
+            $blowFish = "$2y$10$";
+            $token = md5($blowFish . $mail) . md5($blowFish . random_int(1, 1000000));
+            $this->connect();
+            $this->conn->beginTransaction();
+            try {
+                $sql = 'update usuario set token = :token where correo = :mail';
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+                $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $this->conn->commit();
+                return true;
+            } catch (PDOException $e) {
+                $this->conn->rollBack();
+                throw new Exception($e->getMessage());
+            }
+        }
+        return false;
+    }
+
+    function restorePassword($password, $mail, $token)
+    {
+        if ($this->restore($mail, $token)) {
+            $this->connect();
+            $this->conn->beginTransaction();
+            try {
+                $sql = 'update usuario set password = :password where correo = :mail and token = :token';
+                $stmt = $this->conn->prepare($sql);
+                $pass = md5($password);
+                $stmt->bindParam(':password', $pass, PDO::PARAM_STR);
+                $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+                $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result) {
+                    $sql = 'update usuario set token = null where correo = :mail';
+                    $stmt = $this->conn->prepare($sql);
+                    $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+                    $stmt->execute();
+                }
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result) {
+                    $this->conn->commit();
+                    $alerta = [];
+                    $alerta['type'] = 'success';
+                    $alerta['message'] = 'Contraseña restablecida correctamente.';
+                    $this->alert($alerta);
+                    return true;
+                }
+            } catch (PDOException $e) {
+                $this->conn->rollBack();
+                throw new Exception($e->getMessage());
+            }
+        }
+        return false;
+    }
+
     function check($rol)
     {
         if (isset($_SESSION['validated'])) {
@@ -160,6 +222,45 @@ class Model
                 return true;
             }
         }
+        return false;
+    }
+
+    function sendEmail($mail, $header, $body)
+    {
+        require __DIR__ . '/vendor/autoload.php';
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->Host = SMTP_HOST;
+        $mail->SMTPAuth = true;
+        $mail->Username = SMTP_USER;
+        $mail->Password = SMTP_PASSWORD;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = SMTP_PORT;
+        $mail->setFrom(SMTP_USER, 'Vinedos');
+        $mail->addAddress($mail);
+        $mail->isHTML(true);
+        $mail->Subject = $header;
+        $mail->Body = $body;
+        $mail->AltBody = strip_tags($body);
+        if (!$mail->send()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function restore($mail, $token)
+    {
+        $this->connect();
+        $sql = 'SELECT * FROM usuario WHERE correo = :mail AND token = :token';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($result['mail']))
+            return true;
         return false;
     }
 }
