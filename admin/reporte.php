@@ -44,6 +44,38 @@ switch ($action) {
         $mpdf->SetFooter($web->pie());
         break;
 
+    // Case product (id, producto, marca, costo (precio / 1.2), precio), cantidad de productos encontrados al final
+    case 'producto':
+        require_once('./models/producto.php');
+        $producto = new Producto();
+        $productos = $producto->findAll();
+        $mpdf = new \Mpdf\Mpdf(['format' => 'A4']);
+        $mpdf->addPage();
+        $mpdf->SetHeader($web->encabezado());
+        // Show logo 
+        $mpdf->Image('../public/img/logo.png', 10, 10, 50, 30);
+        $mpdf->SetFont('Arial', 'B', 20);
+        $mpdf->WriteHTML('<h1>Reporte de Productos</h1>');
+        $mpdf->SetFont('Arial', '', 12);
+        $mpdf->WriteHTML('<p>Fecha: ' . date('d/m/Y') . '</p>');
+        $mpdf->WriteHTML('<p>Hora: ' . date('H:i:s') . '</p>');
+        $mpdf->WriteHTML('<h1>Productos</h1>');
+        $mpdf->WriteHTML('<table border="1" cellpadding="5" cellspacing="0">');
+        $mpdf->WriteHTML('<tr><th>ID</th><th>Producto</th><th>Marca</th><th>Costo</th><th>Precio</th></tr>');
+        foreach ($productos as $producto) {
+            $mpdf->WriteHTML('<tr>');
+            $mpdf->WriteHTML('<td>' . $producto['id_producto'] . '</td>');
+            $mpdf->WriteHTML('<td>' . $producto['producto'] . '</td>');
+            $mpdf->WriteHTML('<td>' . $producto['marca'] . '</td>');
+            $mpdf->WriteHTML('<td>' . number_format(($producto['precio'] / 1.2), 2) . '</td>');
+            $mpdf->WriteHTML('<td>' . number_format($producto['precio'], 2) . '</td>');
+            $mpdf->WriteHTML('</tr>');
+        }
+        $mpdf->WriteHTML('</table>');
+        // Total de productos
+        $mpdf->WriteHTML('<p>Total de productos: ' . count($productos) . '</p>');
+        break;
+
 }
 $mpdf->Output('reporte.pdf', 'I');
 ?>
