@@ -71,16 +71,6 @@ switch ($action) {
         }
         break;
 
-    case 'restore':
-        $data = $GET;
-        if ($app->validateMail($data['mail']) && strlen($data['token']) == 64) {
-            if ($app->validateToken($data['token'])) {
-                include_once '../auth/views/restore.php';
-            }
-        }
-
-        break;
-
 
     default:
         if (isset($_POST['submit'])) {
